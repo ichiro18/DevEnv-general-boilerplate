@@ -1,19 +1,41 @@
-# phpstorm project files
-.idea
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-# netbeans project files
-nbproject
+# Temporary files #
+###################
+*.swp
+*.swo
+*~
 
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
 
-# windows thumbnail cache
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
 Thumbs.db
 
-# Mac DS_Store Files
-.DS_Store
-
-# vagrant runtime
-/.vagrant
+*.lock
+package-lock.json
