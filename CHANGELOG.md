@@ -1,3 +1,14 @@
+<a name="0.0.4"></a>
+## 0.0.4 (2018-01-15)
+
+
+### Features
+
+* **build:** автогенерация CHANGELOG.md ([282189a](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/282189a))
+* **vcs:** валидация коммитов ([7ea4501](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/7ea4501))
+
+
+
 <a name="0.0.3"></a>
 ## 0.0.3 (2018-01-15)
 
