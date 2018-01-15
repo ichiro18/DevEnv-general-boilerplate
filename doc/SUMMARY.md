@@ -6,3 +6,4 @@
     * [Формат сообщения коммитов](vcsRules/README.md#format)
     * [Автоматизация](vcsRules/README.md#auto)
     * [Changelog](vcsRules/README.md#changelog)
+    * [Модель ветвления](vcsRules/README.md#branches)

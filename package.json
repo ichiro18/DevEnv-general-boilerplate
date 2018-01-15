@@ -10,7 +10,7 @@
   "readme": "README.md",
   "scripts": {
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "doc": "gitbook serve",
+    "doc": "gitbook serve ./doc",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git add package.json",
     "prepush": "npm version patch"
   },
