@@ -131,8 +131,9 @@ Api method for get all posts
 
 Для ручной генерации изменений в **CHANGELOG.md** нужно использовать команду
 ```sh
-$ yarn run changelog
+$ npm version patch
 ```
+*P.S. Команду нужно выполнять после коммита всех изменений*
 
 Автоматическая генерация **CHANGELOG.md** происходит перед коммандой
 ```sh

@@ -11,7 +11,8 @@
   "scripts": {
     "commitmsg": "commitlint -e $GIT_PARAMS",
     "doc": "gitbook serve",
-    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git add package.json"
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git add package.json",
+    "prepush": "npm version patch"
   },
   "license": "MIT",
   "private": true,
