@@ -1,0 +1,22 @@
+{
+  "name": "MerchantSendy",
+  "version": "0.0.1",
+  "description": "Merchant APM for Sendy-system",
+  "main": "index.js",
+  "homepage": "http://sendy.land",
+  "repository": "https://ichiro18@bitbucket.org/ichiro18/sendy_processing-merchant_iris.git",
+  "bugs": "https://ichiro18@bitbucket.org/ichiro18/sendy_processing-merchant_iris.git/issues",
+  "author": "Ilya Zhuravlev <zhuravlev@dipay.ru>",
+  "scripts": {
+    "commitmsg": "commitlint -e $GIT_PARAMS",
+    "predeploy": "=========== START DEPLOY ===========",
+    "postdeploy": "===========  END DEPLOY  ==========="
+  },
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@commitlint/cli": "^6.0.2",
+    "@commitlint/config-conventional": "^6.0.2",
+    "husky": "^0.14.3"
+  }
+}

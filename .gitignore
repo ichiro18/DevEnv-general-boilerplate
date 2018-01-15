@@ -1,3 +1,7 @@
+# IDE/TextEditor settings #
+###########################
+.idea/
+
 # Compiled source #
 ###################
 *.com
