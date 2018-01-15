@@ -1,3 +1,8 @@
+<a name="0.0.6"></a>
+## [0.0.6](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.5...0.0.6) (2018-01-15)
+
+
+
 <a name="0.0.5"></a>
 ## [0.0.5](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.4...0.0.5) (2018-01-15)
 
