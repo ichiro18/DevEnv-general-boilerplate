@@ -41,5 +41,14 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
+
+# NPM generated files #
+#######################
 *.lock
-package-lock.json
+#package-lock.json
+node_modules/
+
+# Doc generated files #
+#######################
+doc/_book/
+_book/

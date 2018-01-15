@@ -3,7 +3,6 @@
 	email = zhuravlev@dipay.ru
 	username = ichiro18
 [core]
-	editor = goland
 	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = /.gitignore
 [color]

@@ -7,16 +7,19 @@
   "repository": "https://ichiro18@bitbucket.org/ichiro18/sendy_processing-merchant_iris.git",
   "bugs": "https://ichiro18@bitbucket.org/ichiro18/sendy_processing-merchant_iris.git/issues",
   "author": "Ilya Zhuravlev <zhuravlev@dipay.ru>",
+  "readme": "README.md",
   "scripts": {
     "commitmsg": "commitlint -e $GIT_PARAMS",
-    "predeploy": "=========== START DEPLOY ===========",
-    "postdeploy": "===========  END DEPLOY  ==========="
+    "doc": "gitbook serve",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md && git add package.json"
   },
   "license": "MIT",
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "^6.0.2",
     "@commitlint/config-conventional": "^6.0.2",
+    "gitbook": "^3.2.3",
+    "gitbook-cli": "^2.3.2",
     "husky": "^0.14.3"
   }
 }

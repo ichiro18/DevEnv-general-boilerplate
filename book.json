@@ -1,0 +1,7 @@
+{
+  "root": "./doc",
+  "title": "АРМ Merchant Dev Docs",
+  "description": "Documentation for developers APM Merchant Sendy-system",
+  "author": "Ilya Zhuravlev <zhuravlev@dipay.ru>",
+  "language": "ru"
+}
