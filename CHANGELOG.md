@@ -1,3 +1,18 @@
+<a name="0.0.7"></a>
+## [0.0.7](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.6...0.0.7) (2018-01-16)
+
+
+### Bug Fixes
+
+* **project structure:** удалены временные файлы ([3603b96](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/3603b96))
+
+
+### Features
+
+* **vcs:** создание develop ветки ([b5765c2](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/b5765c2))
+
+
+
 <a name="0.0.6"></a>
 ## [0.0.6](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.5...0.0.6) (2018-01-15)
 
