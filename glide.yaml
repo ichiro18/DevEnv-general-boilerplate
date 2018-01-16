@@ -1,0 +1,10 @@
+package: sendy/processing/merchant2
+homepage: https://bitbucket.org/ichiro18/sendy_processing-merchant_iris
+license: MIT
+owners:
+- name: Ilya Zhuravlev
+  email: zhuravlev@dipay.ru
+  homepage: http://sendy.land
+import:
+- package: github.com/fatih/color
+  version: ^1.5.0

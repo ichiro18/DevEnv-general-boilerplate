@@ -26,5 +26,5 @@
 [url "https://gist.github.com/"]
     insteadOf = gist:
 
-[url "https://5.101.75.84:4433/"]
+[url "https://zhuravlev@5.101.75.84:4433/"]
     insteadOf = sendy:
