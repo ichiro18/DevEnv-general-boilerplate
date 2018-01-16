@@ -1,126 +1,68 @@
-# ПРАВИЛА РАБОТЫ С VCS
-### Цели
-1. Организация удобной работы для неограниченного числа разработчиков
-2. Получать более полную информацию при просмотре истории
+![Logo of the project](https://raw.githubusercontent.com/jehna/readme-best-practices/master/sample-logo.png)
+# Project Name
+> Project Description
 
-## Формат сообщения коммитов
-```
-<type>(<scope>): <subject>
-<BLANK LINE>
-<body>
-<BLANK LINE>
-<footer>
-```
-Любая строка сообщения коммита не должна быть длиннее 100 символов. Это позволяет легче читать сообщение в различных инструментах GIT.
+* badges
 
-Сообщение коммита состоит из заголовка, параметров задачи, тела и нижнего колонтитула, разделенных пустой строкой.
+* screenshot
 
-### Заголовок сообщения `<subject>`
-Заголовок сообщения представляет собой одну строку, которая содержит краткое описание изменения, содержащего тип, область и сообщение.
-- используйте настоящее время
+## Features
+Features
 
-- не используйте прописную букву
+## Motivation
+Motivation
 
-- не используйте точку в конце
-##### Доступные `<type>`:
+## Install
 
-- feat (используется при добавлении новой функциональности)
+Install
 
-- fix (исправление ошибки)
+## Usage
+Usage
 
-- docs (всё, что касается документации)
+## Workflow
+Workflow
 
-- typo (исправление опечаток)
+## Configuration
+Configuration
 
-- style (форматирование, пропущенная точка с запятой)
+## Tests
 
-- refactor (рефакторинг кода приложения)
+Tests
 
-- test (добавление не достающего теста)
+## Deployment
 
-- chore (мелкие изменения без измений производственного кода, н-р: изменение задач сборщика Grunt)
+Deployment
 
-##### Доступные `<scope>`:
+## API Reference
+API Reference
 
-Область может быть чем угодно указывать на место совершения изменений.
+## Built With
+Built With
 
-Например:
+## Contributing
+Contributing
 
-- Функция: `MakeName`, `main`
+## Versioning
+Versioning
 
-- Имя файла: `test_feature.go`
+## TODO
+- [X] Add MacOS Demo
+- [X] Auto-calculate the frame count
+- [X] Show preview of GIF in iOS App
+- [X] Create GIFs based on enums for quality type
 
-- Имя пакета: `httprequest`
+## Tips
+Tips
 
-##### Бонус:
-Работа не волк, поэтому предлагаю украсить коммиты с помощью emoji
-- :art: `:art:` при улучшении формата/структуры кода
-- :racehorse: `:racehorse:` при улучшении производительности
-- :non-potable_water: `:non-potable_water:` при исправлении утечек памяти
-- :memo: `:memo:` при написании документации для кода
-- :penguin: `:penguin:` при исправлении совместимости с Linux
-- :apple: `:apple:` при исправлении совместимости с Mac
-- :checkered_flag: `:checkered_flag:` при исправлении совместимости с Windows
-- :bug: `:bug:` при фиксах багов
-- :fire: `:fire:` при удалении кода/файлов
-- :green_heart: `:green_heart:` при исправлении сборки/деплоя
-- :white_check_mark: `:white_check_mark:` при добавлении тестов
-- :lock: `:lock:` при работе с безопасностью
-- :arrow_up: `:arrow_up:` при добавлении функционала
-- :arrow_down: `:arrow_down:` при урезании функционала
+## FAQ
+FAQ
 
-Например:
-```
-:fire: feat (buybox): removed unused container elements
-```
+## Authors
+Authors
+* **Billie Thompson** - *Initial work* - (PurpleBooth)[vk.com]
 
-#### Тело сообщения `<body>`
-Отделяется от заголовка пустой строкой
+## Credits
+Credits
 
-В теле сообщения описываем выполненные действия
-
-Например:
-```
-Issue:
- - Portfolios with > 30 trades can cause significant slowdown on pageload
- - Majority of the bottleneck is in trade score / chart data
-
-Fix:
-This is a quick fix to prevent redundant lookups. This includes:
- - Memoize Trade #spy_price_on_transaction_date and #spy_current_price
- - Eager load Trade ticker
-```
-
-#### Нижний колонтитул
-
-Здесь вы можете ссылаться на:
- - закрытые задачи
- ```
- {id} - {summary}
- ```
- - issues
- ```
- closes #125
- ```
- - pull-requests&merge
- ```
- merge with @frontend
- ```
-### Примеры
-
-
-```
-fix(main): add error check
-
-Add check for error when serializing
-
-closes #125
-```
-
-```
-feat(GetAllPosts): new api method
-
-Api method for get all posts
-
-123123123123213 - Разработать метод для получения списка постов
-```
+## License
+License [MIT License](http://http//opensource.org/licenses/mit-license.php)

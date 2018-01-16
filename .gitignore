@@ -1,6 +1,7 @@
 # IDE/TextEditor settings #
 ###########################
 .idea/
+.idea/workspace.xml
 
 # Compiled source #
 ###################
