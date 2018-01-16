@@ -1,3 +1,13 @@
+<a name="0.0.9"></a>
+## [0.0.9](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.8...0.0.9) (2018-01-16)
+
+
+### Bug Fixes
+
+* **vcs:** удаление локальных конфигов ([46a3779](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/46a3779))
+
+
+
 <a name="0.0.8"></a>
 ## [0.0.8](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.7...0.0.8) (2018-01-16)
 
