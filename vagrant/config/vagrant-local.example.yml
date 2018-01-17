@@ -1,0 +1,21 @@
+# Ваш персональный GitHub token
+github_token: <your-personal-github-token>
+# Вы можете получить токен здесь: https://github.com/settings/tokens
+
+# Часовой пояс гостевой машины
+timezone: Europe/Moscow
+
+# Автообновления
+box_check_update: false
+
+# Имя виртуальной машины
+machine_name: dev-server
+
+# IP Виртуальной машины
+ip: 192.168.33.101
+
+# Количество ядер виртуальной машины
+cpus: 1
+
+# Размер оперативной памяти виртуальной машины
+memory: 1024

@@ -5,6 +5,8 @@ owners:
 - name: Ilya Zhuravlev
   email: zhuravlev@dipay.ru
   homepage: http://sendy.land
+excludeDirs:
+- node_modules
 import:
 - package: github.com/fatih/color
   version: ^1.5.0

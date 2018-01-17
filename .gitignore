@@ -40,15 +40,22 @@
 ehthumbs.db
 Icon?
 Thumbs.db
+.vagrant/
 
 
-# NPM generated files #
+# Vendor files #
 #######################
 *.lock
-#package-lock.json
+package-lock.json
 node_modules/
+vendor/
 
 # Doc generated files #
 #######################
 doc/_book/
 _book/
+
+
+#    Local configs    #
+#######################
+**/*-local.yaml
