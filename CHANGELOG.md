@@ -1,3 +1,13 @@
+<a name="0.0.11"></a>
+## [0.0.11](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.10...0.0.11) (2018-01-18)
+
+
+### Bug Fixes
+
+* **vcs:** delete package-lock.json ([c2facf4](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/c2facf4))
+
+
+
 <a name="0.0.10"></a>
 ## [0.0.10](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.9...0.0.10) (2018-01-17)
 
