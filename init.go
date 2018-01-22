@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"path/filepath"
+
 	"github.com/fatih/color"
 	"gopkg.in/AlecAivazis/survey.v1"
 )
@@ -34,17 +35,18 @@ func main() {
 		return
 	}
 
-
 	color.Yellow("Start initialization ...")
+
 	//Default "dev"
 	env := "dev"
-	if answers.Environments == "Production"{
+	if answers.Environments == "Production" {
 		env = "prod"
 	}
-	files, err := filepath.Glob("./environments/"+env+"/*")
+	files, err := filepath.Glob("./environments/" + env + "/*")
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(files)
+
 	color.Yellow("... initialization completed")
 }
