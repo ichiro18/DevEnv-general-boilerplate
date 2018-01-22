@@ -1,3 +1,13 @@
+<a name="0.0.12"></a>
+## [0.0.12](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.11...0.0.12) (2018-01-22)
+
+
+### Features
+
+* **workflow:** create workflow rules ([887179c](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/commits/887179c))
+
+
+
 <a name="0.0.11"></a>
 ## [0.0.11](https://bitbucket.org/ichiro18/sendy_processing-merchant_iris/compare/0.0.10...0.0.11) (2018-01-18)
 
