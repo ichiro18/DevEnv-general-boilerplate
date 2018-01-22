@@ -1,6 +1,6 @@
 {
   "name": "MerchantSendy",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Merchant APM for Sendy-system",
   "main": "index.js",
   "homepage": "http://sendy.land",
