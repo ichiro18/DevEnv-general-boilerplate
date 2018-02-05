@@ -3,24 +3,58 @@
 require 'yaml'
 require 'fileutils'
 
+module OS
+    def OS.windows?
+        (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+    end
 
+    def OS.mac?
+        (/darwin/ =~ RUBY_PLATFORM) != nil
+    end
+
+    def OS.unix?
+        !OS.windows?
+    end
+
+    def OS.linux?
+        OS.unix? and not OS.mac?
+    end
+end
+
+# ===========================         Настройка Vagrant        ==================================
 # Проверяем необходимые плагины
-required_plugins = %w( vagrant-hostsupdater vagrant-vbguest vagrant-cachier )
+required_plugins = %w( vagrant-vbguest vagrant-cachier )
 required_plugins.each do |plugin|
     exec "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
 end
 
-# Используемые домены
-domains = {
-  frontend: 'frontend-ops.dev',
-  backend:  'backend-ops.dev'
-}
+# Проверка системы хоста
+if OS.linux?
+    ENV['VAGRANT_DEFAULT_PROVIDER'] = 'docker'
+elsif OS.windows?
+    required_plugins = %w( vagrant-winnfsd )
+    required_plugins.each do |plugin|
+        exec "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+    end
+    ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+elsif OS.mac?
+    required_plugins = %w( vagrant-parallels )
+    required_plugins.each do |plugin|
+        exec "vagrant plugin install #{plugin}" unless Vagrant.has_plugin? plugin
+    end
+    ENV['VAGRANT_DEFAULT_PROVIDER'] = 'parallels'
 
+end
+
+# ===========================        Подгрузка конфигов        ==================================
+# Базовые переменные
+Vagrant.require_version ">= 1.6.0"
+VAGRANTFILE_API_VERSION = "2"
 
 # Пути к конфигам
 config = {
-  local: './vagrant/config/vagrant-local.yml',
-  example: './vagrant/config/vagrant-local.example.yml'
+  local: './provision/config/vagrant-local.yml',
+  example: './provision/config/vagrant-local.example.yml'
 }
 
 # Копируем конфиг их примера, если локального не существует
@@ -28,61 +62,82 @@ FileUtils.cp config[:example], config[:local] unless File.exist?(config[:local])
 # Читаем конфиг
 options = YAML.load_file config[:local]
 
-# Проверяем github token
-if options['github_token'].nil? || options['github_token'].to_s.length != 40
-  puts "You must place REAL GitHub token into configuration:\n/Projectdir/vagrant/config/vagrant-local.yml"
-  exit
+# Проверка системы хоста
+if OS.linux?
+    #Linux
+    host_ip = 'localhost'
+else
+    host_ip = options['ip']
 end
+# ===========================       Организация конфигов       ==================================
 
-# vagrant конфигурация
-Vagrant.configure("2") do |config|
-  # Выбираем образ системы
-  config.vm.box = "centos/7"
+# Микросервисы проекта
+project_structure = {
+    api: {
+        name: "api",
+        path: "./api/",
+        port: 8001,
+    },
+    backend: {
+        name: "backend",
+        path: "./backend/",
+        port: 8002,
+    },
+    frontend: {
+        name: "frontend",
+        path: "./frontend/",
+        port: 8003,
+    }
+}
 
-  # Кэширование обновлений
-  config.cache.scope = :box
+# Модули для управления микросервисами
+manage_modules  = {
+    doc: './doc/'
+}
 
-  # Автообновление плагинов для VirtualBox
-  config.vbguest.auto_update = false
+# ===========================       Vagrant-конфигурация       ==================================
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    # ---------------------------       Общие настройки      ---------------------------
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.ssh.port = "22"
+    # ---------------------------    Микросервисы проекта    ---------------------------
+    # Frontend
+    config.vm.define :frontend do |frontend|
+        frontend.vm.provider :docker do |d|
+            # Директория
+            d.build_dir = project_structure[:frontend][:path]
+            # Название контейнера
+            d.name = "#{project_structure[:frontend][:name]}_#{options['project_name']}"
+            # Название образа
+            d.build_args = ["-t=#{project_structure[:frontend][:name]}_#{options['project_name']}"]
+            # Проброс портов
+            d.ports = ["#{project_structure[:frontend][:port]}:8080"]
+            # Чтобы контейнер работал всегда, пока работает vagrant
+            d.remains_running = false
+            # Если нужна VM
+            d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
+            d.vagrant_machine = "#{options['project_name']}_dockerhost"
+        end
+    end
 
-  # Автообновление системы
-  config.vm.box_check_update = options['box_check_update']
-
-  config.vm.provider 'virtualbox' do |vb|
-    # Количество ядер процессора
-    vb.cpus = options['cpus']
-    # Размер оперативной памяти
-    vb.memory = options['memory']
-    # Имя виртуальной машины
-    vb.name = options['machine_name']
-  end
-
-  # Имя виртуальной машины (для консоли Vagrant)
-  config.vm.define options['machine_name']
-
-  # Имя виртуальной машины (для консоли guest machine)
-  config.vm.hostname = options['machine_name']
-
-  # Сетевые настройки
-  config.vm.network 'private_network', ip: options['ip']
-
-  # Настройки хостов (host machine)
-  config.hostsupdater.aliases            = domains.values
-
-  # Исполняемые скрипты на guest machine
-  config.vm.provision 'shell', path: './vagrant/provision/once-as-root.sh', args: [options['timezone']]
-  config.vm.provision 'shell', path: './vagrant/provision/once-as-vagrant.sh', args: [options['github_token']], privileged: false
-  # config.vm.provision 'shell', path: './vagrant/provision/always-as-root.sh', run: 'always'
-  config.vm.provision 'shell', path: './vagrant/provision/always-as-vagrant.sh', run: 'always'
-
-
-  # Синхронизация файлов 'Папка проекта' (host machine) -> папка '/app' (guest machine)
-  config.vm.synced_folder './', '/GO/src/App/', owner: 'vagrant', group: 'vagrant'
-
-  # Исключаем папку '/vagrant' (guest machine) из расшаривания
-  config.vm.synced_folder '.', '/vagrant', disabled: true
-
-  # Сообщение после установки (vagrant console)
-  config.vm.post_up_message = "Guest machine #{options[:machine_name]} DONE!\n Frontend URL: http://#{domains[:frontend]}\nBackend URL: http://#{domains[:backend]}"
+    # Backend
+    config.vm.define :backend do |backend|
+        # Настройка провайдера
+        backend.vm.provider :docker do |d|
+            # Директория
+            d.build_dir = project_structure[:backend][:path]
+            # Название контейнера
+            d.name = "#{project_structure[:backend][:name]}_#{options['project_name']}"
+            # Название образа
+            d.build_args = ["-t=#{project_structure[:backend][:name]}_#{options['project_name']}"]
+            # Проброс портов
+            d.ports = ["#{project_structure[:backend][:port]}:8080"]
+            # Чтобы контейнер работал всегда, пока работает vagrant
+            d.remains_running = false
+            # Если нужна VM
+            d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
+            d.vagrant_machine = "#{options['project_name']}_dockerhost"
+        end
+    end
 
 end

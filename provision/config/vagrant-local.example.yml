@@ -1,6 +1,10 @@
+# Имя проекта
+project_name: dev-env
+
 # Ваш персональный GitHub token
-github_token: <your-personal-github-token>
+# github_token: <your-personal-github-token>
 # Вы можете получить токен здесь: https://github.com/settings/tokens
+
 
 # Часовой пояс гостевой машины
 timezone: Europe/Moscow
@@ -8,6 +12,11 @@ timezone: Europe/Moscow
 # Автообновления
 box_check_update: false
 
+# Предпологаемые параметры БОЕВОГО (prod) сервера
+# Выбирать на docker-hub
+prod_os: centos7
+
+# ================== Если у вас не Linux ===========================
 # Имя виртуальной машины
 machine_name: dev-server
 
@@ -15,7 +24,8 @@ machine_name: dev-server
 ip: 192.168.33.101
 
 # Количество ядер виртуальной машины
-cpus: 1
+cpus: 2
 
 # Размер оперативной памяти виртуальной машины
 memory: 1024
+# ================== Если у вас не Linux ===========================
