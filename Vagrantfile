@@ -99,7 +99,9 @@ manage_modules  = {
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # ---------------------------       Общие настройки      ---------------------------
     config.vm.synced_folder ".", "/vagrant", disabled: true
-    config.ssh.port = "22"
+    # config.ssh.port = "22"
+    config.ssh.username = "vagrant"
+    config.ssh.password = "vagrant"
     # ---------------------------    Микросервисы проекта    ---------------------------
     # Frontend
     config.vm.define :frontend do |frontend|
@@ -110,34 +112,39 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             d.name = "#{project_structure[:frontend][:name]}_#{options['project_name']}"
             # Название образа
             d.build_args = ["-t=#{project_structure[:frontend][:name]}_#{options['project_name']}"]
+            # Добавляем возможность подключиться к контейнеру по SSH
+            d.has_ssh = true
             # Проброс портов
-            d.ports = ["#{project_structure[:frontend][:port]}:8080"]
+            d.ports = [
+                # Рабочий порт
+                "#{project_structure[:frontend][:port]}:8080"
+            ]
             # Чтобы контейнер работал всегда, пока работает vagrant
-            d.remains_running = false
+            d.remains_running = true
             # Если нужна VM
             d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
             d.vagrant_machine = "#{options['project_name']}_dockerhost"
         end
     end
 
-    # Backend
-    config.vm.define :backend do |backend|
-        # Настройка провайдера
-        backend.vm.provider :docker do |d|
-            # Директория
-            d.build_dir = project_structure[:backend][:path]
-            # Название контейнера
-            d.name = "#{project_structure[:backend][:name]}_#{options['project_name']}"
-            # Название образа
-            d.build_args = ["-t=#{project_structure[:backend][:name]}_#{options['project_name']}"]
-            # Проброс портов
-            d.ports = ["#{project_structure[:backend][:port]}:8080"]
-            # Чтобы контейнер работал всегда, пока работает vagrant
-            d.remains_running = false
-            # Если нужна VM
-            d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
-            d.vagrant_machine = "#{options['project_name']}_dockerhost"
-        end
-    end
+    # # Backend
+    # config.vm.define :backend do |backend|
+    #     # Настройка провайдера
+    #     backend.vm.provider :docker do |d|
+    #         # Директория
+    #         d.build_dir = project_structure[:backend][:path]
+    #         # Название контейнера
+    #         d.name = "#{project_structure[:backend][:name]}_#{options['project_name']}"
+    #         # Название образа
+    #         d.build_args = ["-t=#{project_structure[:backend][:name]}_#{options['project_name']}"]
+    #         # Проброс портов
+    #         d.ports = ["#{project_structure[:backend][:port]}:8080"]
+    #         # Чтобы контейнер работал всегда, пока работает vagrant
+    #         d.remains_running = false
+    #         # Если нужна VM
+    #         d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
+    #         d.vagrant_machine = "#{options['project_name']}_dockerhost"
+    #     end
+    # end
 
 end
