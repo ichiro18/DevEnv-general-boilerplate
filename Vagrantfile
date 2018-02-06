@@ -74,19 +74,23 @@ end
 # Микросервисы проекта
 project_structure = {
     api: {
+        id: 1,
         name: "api",
         path: "./api/",
         port: 8001,
+        sshport: 2221,
     },
     backend: {
+        id: 2,
         name: "backend",
         path: "./backend/",
-        port: 8002,
+        sshport: 2222,
     },
     frontend: {
+        id: 3,
         name: "frontend",
         path: "./frontend/",
-        port: 8003,
+        sshport: 2223,
     }
 }
 
@@ -121,30 +125,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             ]
             # Чтобы контейнер работал всегда, пока работает vagrant
             d.remains_running = true
+            # Если нужен принудительный запуск VM
+            # d.force_host_vm = true
             # Если нужна VM
             d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
             d.vagrant_machine = "#{options['project_name']}_dockerhost"
         end
+        #
+        # frontend.vm.hostname = project_structure[:frontend][:name]
+        # frontend.ssh.host   =   host_ip
+        # frontend.ssh.port   =   2200 + project_structure[:frontend][:id]
+        # frontend.ssh.private_key_path   =   "./provision/security/#{project_structure[:frontend][:name]}.key.pub"
     end
-
-    # # Backend
-    # config.vm.define :backend do |backend|
-    #     # Настройка провайдера
-    #     backend.vm.provider :docker do |d|
-    #         # Директория
-    #         d.build_dir = project_structure[:backend][:path]
-    #         # Название контейнера
-    #         d.name = "#{project_structure[:backend][:name]}_#{options['project_name']}"
-    #         # Название образа
-    #         d.build_args = ["-t=#{project_structure[:backend][:name]}_#{options['project_name']}"]
-    #         # Проброс портов
-    #         d.ports = ["#{project_structure[:backend][:port]}:8080"]
-    #         # Чтобы контейнер работал всегда, пока работает vagrant
-    #         d.remains_running = false
-    #         # Если нужна VM
-    #         d.vagrant_vagrantfile = "./provision/vm/Vagrantfile"
-    #         d.vagrant_machine = "#{options['project_name']}_dockerhost"
-    #     end
-    # end
 
 end
